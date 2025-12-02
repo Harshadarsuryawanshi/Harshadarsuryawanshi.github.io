@@ -240,13 +240,66 @@
     }
 
     .research-block h3 {
-      margin: 6px 0 4px;
+      margin: 6px 0 2px;
       font-size: 0.98rem;
     }
 
+    .item-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
     .research-block p {
-      margin: 0;
+      margin: 4px 0 0;
       font-size: 0.93rem;
+      color: var(--text-muted);
+    }
+
+    /* Expandable details */
+    details {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    body.dark details {
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.93rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-title {
+      font-weight: 500;
+    }
+
+    .summary-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    details[open] {
+      padding-bottom: 10px;
+    }
+
+    details p,
+    details ul {
+      margin-top: 6px;
+      font-size: 0.9rem;
       color: var(--text-muted);
     }
 
@@ -265,6 +318,11 @@
 
       .hero-photo {
         margin: 0 auto;
+      }
+
+      summary {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
@@ -317,12 +375,14 @@
     <a href="#projects">Projects</a>
   </nav>
 
-  <!-- Research (explanatory) -->
+  <!-- Research: only current project on main; older work collapsible -->
   <section id="research">
     <h2>Research</h2>
 
+    <div class="section-subtitle">Current project</div>
     <div class="research-block">
       <h3>Zn Electrodeposition for Metal Batteries · University of Michigan</h3>
+      <div class="item-meta">Aug 2023 – Present</div>
       <p>
         I study zinc electrodeposition in ionic liquid and other non-aqueous electrolytes using
         high-throughput microelectrode arrays. By operating under controlled current conditions and
@@ -333,26 +393,33 @@
       </p>
     </div>
 
-    <div class="research-block">
-      <h3>Thermoelectric Materials and Band Structure Modeling · IIT Bombay</h3>
-      <p>
-        Previously, I worked on n-type Mg<sub>3</sub>Sb<sub>0.6</sub>Bi<sub>1.4</sub> and related solid solutions
-        for waste-heat thermoelectrics. I combined synthesis, transport measurements (conductivity,
-        Seebeck, Hall), and multiband electronic band-structure modeling in MATLAB to generate 3D
-        predictive maps of doping, temperature, and zT. This helped identify broad high-zT regions,
-        improving temperature-averaged efficiency and widening the processing and stability window.
-      </p>
-    </div>
+    <div class="section-subtitle" style="margin-top:10px;">Previous research (click to expand)</div>
 
-    <div class="research-block">
-      <h3>Magnesium Alloys for Lightweight Automotive Applications · ARAI, Pune</h3>
+    <details>
+      <summary>
+        <span class="summary-title">Thermoelectric Materials and Band Structure Modeling · IIT Bombay</span>
+        <span class="summary-meta">Nov 2021 – Jun 2023</span>
+      </summary>
       <p>
-        I also evaluated AZ91D magnesium alloys as lightweight replacements for aluminum components
-        in automobiles. By correlating microstructure and mechanical properties and assessing creep
-        and corrosion behavior, I estimated that a 10% vehicle weight reduction can yield roughly
-        5% fuel savings.
+        Developed n-type Mg<sub>3</sub>Sb<sub>0.6</sub>Bi<sub>1.4</sub> and related solid solutions for waste-heat
+        thermoelectrics, combining synthesis and transport measurements (conductivity, Seebeck, Hall)
+        with multiband electronic band-structure modeling in MATLAB. Generated 3D predictive maps of
+        doping, temperature, and zT, revealing broad high-zT regions that improve temperature-averaged
+        efficiency and widen processing and stability windows.
       </p>
-    </div>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">Magnesium Alloys for Lightweight Automotive Applications · ARAI, Pune</span>
+        <span class="summary-meta">Jun 2021 – Aug 2021</span>
+      </summary>
+      <p>
+        Evaluated AZ91D magnesium alloys as lightweight replacements for aluminum components in
+        automobiles. Correlated microstructure and mechanical properties, assessed creep and corrosion
+        behavior, and estimated that a 10% vehicle weight reduction can yield roughly 5% fuel savings.
+      </p>
+    </details>
   </section>
 
   <!-- Publications -->
@@ -366,8 +433,7 @@
           Current-Controlled Zinc Electrodeposition Morphology in Ionic Liquid Electrolytes Using Microelectrode Arrays.
         </span>
         <br />
-        Submitted to <span class="pub-venue">ACS Nano</span>.
-        Preprint:&nbsp;
+        Submitted to <span class="pub-venue">ACS Nano</span>. Preprint (2025):&nbsp;
         <a href="https://doi.org/10.26434/chemrxiv-2025-tdf14" target="_blank" rel="noopener">
           10.26434/chemrxiv-2025-tdf14
         </a>
@@ -380,7 +446,7 @@
           Mg<sub>3</sub>(Sb<sub>1−x</sub>Bi<sub>x</sub>)<sub>2</sub> Thermoelectric Materials.
         </span>
         <br />
-        <span class="pub-venue">ACS Applied Materials &amp; Interfaces</span>, 16(2), 2263–2269.&nbsp;
+        <span class="pub-venue">ACS Applied Materials &amp; Interfaces</span>, 16(2), 2263–2269 (2024).&nbsp;
         <a href="https://doi.org/10.1021/ACSAMI.3C15019" target="_blank" rel="noopener">
           10.1021/ACSAMI.3C15019
         </a>
@@ -412,15 +478,56 @@
     </ul>
   </section>
 
-  <!-- Leadership / PORs: names only -->
+  <!-- Leadership: clickable details with info -->
   <section id="leadership">
     <h2>Leadership</h2>
-    <ul class="item-list">
-      <li>DOE Early Career Network Representative for ESRA Hub</li>
-      <li>Secretary – Electrochemical Society Student Chapter, University of Michigan</li>
-      <li>Head – Department Academic Mentorship Program (D-AMP), IIT Bombay</li>
-      <li>Horizons Coordinator – Mood Indigo, IIT Bombay</li>
-    </ul>
+
+    <details>
+      <summary>
+        <span class="summary-title">DOE Early Career Network Representative for ESRA Hub</span>
+        <span class="summary-meta">Oct 2025 – Present</span>
+      </summary>
+      <p>
+        Selected to represent ~70 early-career researchers in the DOE BES Early Career Network.
+        Serve as a point-of-contact for ESRA Hub early-career researchers, communicate BES
+        opportunities, and help organize events.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">Secretary – Electrochemical Society Student Chapter, University of Michigan</span>
+        <span class="summary-meta">Aug 2025 – Present</span>
+      </summary>
+      <p>
+        Lead initiatives to build a stronger electrochemistry research community at UMich, including
+        seminars and networking events connecting students with industry, national-lab, and faculty
+        researchers.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">Head – Department Academic Mentorship Program (D-AMP), IIT Bombay</span>
+        <span class="summary-meta">Apr 2022 – Apr 2023</span>
+      </summary>
+      <p>
+        Led 32 mentors supporting 150+ undergraduate and dual-degree students. Implemented targeted
+        summer programs and special TA support that helped 10+ under-performing students recover
+        academically.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">Horizons Coordinator – Mood Indigo, IIT Bombay</span>
+        <span class="summary-meta">Mar 2019 – Mar 2020</span>
+      </summary>
+      <p>
+        Coordinated “Eloquence”, a flagship literary event track at Asia’s largest college cultural
+        festival. Managed 15+ organizers and curated events featuring national-level speakers.
+      </p>
+    </details>
   </section>
 
   <!-- Education -->
@@ -432,14 +539,45 @@
     </ul>
   </section>
 
-  <!-- Projects: names only -->
+  <!-- Projects: clickable details with info -->
   <section id="projects">
     <h2>Projects</h2>
-    <ul class="item-list">
-      <li>Graphene for Water Remediation</li>
-      <li>Environmental Impact of Aerosol Packaging</li>
-      <li>Hydrogen Energy</li>
-    </ul>
+
+    <details>
+      <summary>
+        <span class="summary-title">Graphene for Water Remediation</span>
+        <span class="summary-meta">Jun 2020 – Nov 2020</span>
+      </summary>
+      <p>
+        Reviewed wastewater purification techniques with emphasis on cost-effective adsorption methods.
+        Examined factors controlling adsorption on reduced graphene oxide (rGO), including pH and ionic
+        strength, and proposed rGO nanosheets as high-capacity adsorbents with much higher adsorption
+        limits than carbon nanotubes.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">Environmental Impact of Aerosol Packaging</span>
+        <span class="summary-meta">Jun 2020 – Nov 2020</span>
+      </summary>
+      <p>
+        Analyzed propellants and packaging materials in aerosol systems to quantify contributions to
+        CO<sub>2</sub> emissions and VOC release. Computed embodied energy for aluminum and stainless-steel
+        cans in the USA and Brazil, recommending aluminum as a more sustainable choice.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        <span class="summary-title">Hydrogen Energy</span>
+        <span class="summary-meta">May 2019 – Jul 2019</span>
+      </summary>
+      <p>
+        Surveyed hydrogen storage technologies and assessed pathways and challenges for hydrogen energy
+        deployment in India.
+      </p>
+    </details>
   </section>
 
   <footer>
